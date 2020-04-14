@@ -30,16 +30,11 @@ def main():
 
     subs=[]
 
-    #get subs list
     data = request.execute()
     items=data.get('items')
     for i in items:
-        subs.append(i.get('id'))
-
-    #delete sub
-    for channel in subs:
-        request = youtube.subscriptions().delete(id=channel)
-        request.execute()
+        subs.append(i.get('snippet').get('resourceId').get('channelId'))
+    print(subs)
 
 if __name__ == "__main__":
     main()
